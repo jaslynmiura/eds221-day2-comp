@@ -87,3 +87,47 @@ class(fruit)
 fruit[,2]
 fruit[2,1] <- "pineapple" # data frames are mutable, we can change a value
 fruit
+
+# select multiple elements
+x <- 1:10
+x[c(3, 1, 5)]
+x[c(1, 1, 1)]
+x[c(1.2, 5.4, 7.2)]
+
+# exclude elements with negative integers
+x[-10]
+x[-c(2, 4, 6, 8, 10)]
+x[c(-1, 2)]
+
+# logical vectors
+x[c(TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE)]
+
+x[x > 3]
+
+x[0]
+
+# subsetting and assigning multiple values
+x <- 1:5
+x[c(1, 2)] <- 2:3 # replacing the 1st and 2nd element with 2 and 3
+
+x[-1] <- 4:1 # replacing all values except the 1st element
+
+# subset rows in data frames based on conditions (logical subsetting)
+mtcars[mtcars$gear == 5, ] # all the rows where the value in the gear column = 5, keeps all other columns
+
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
+
+# shorthand version using the subset function
+subset(mtcars, gear == 5)
+subset(mtcars, gear == 5 & cyl == 4)
+
+# remove columns
+df <- data.frame(x = 1:3, 
+                 y = 3:1,
+                 z = c("a", "b", "c"))
+df$z <- NULL # removing the z column
+df <- df[c("x", "y")] # just selecting the x and y column and overwriting the original
+df[setdiff(names(df), "z")] # look at all the names in my data frame remove the column with the name z
+
+
+
